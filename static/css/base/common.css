@@ -1,0 +1,154 @@
+/*top start*/
+.top{
+    width: 100%;
+    height: 65px;
+    background: #141414;
+}
+.top .top_con{
+    width: 1200px;
+    height: 65px;
+    background: #141414;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 65px;
+    color: white;
+}
+.top .top_con .logo{
+    height: 100%;
+    width: 235px;
+    background: url("https://www.python.org/static/img/python-logo.png")no-repeat 0 -6px;
+    float: left;
+    margin-right: 60px;
+}
+.top .top_con .menu li{
+    float:left;
+    margin-left: 20px;
+    height: 65px;
+    box-sizing: border-box;
+}
+.top .top_con .menu li.show{
+    border-bottom: 3px solid greenyellow;
+}
+.top .top_con .menu li:hover{
+    border-bottom: 3px solid greenyellow;
+}
+.top .top_con .menu li a{
+    display: inline-block;
+    height: 65px;
+    width: 65px;
+    font-size: 15px;
+    color:inherit;
+}
+.top .top_con .load{
+    float: right;
+    font-size: 20px;
+    color:inherit;
+}
+.top .top_con .load a{
+    color:inherit;
+}
+.top .top_con .load i{
+    font-size: 30px;
+}
+/* ========= loged start ============ */
+.top_con .author {
+    float: right;
+    position: relative;
+    cursor: pointer;
+}
+
+.top_con .author .author-menu {
+    display: none;
+    width: 120px;
+    position: absolute;
+    top: 64px;
+    left: -15px;
+    background: #fff;
+    text-align: center;
+    line-height: 45px;
+    box-shadow: 0 1px 2px #ccc;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.top_con .author .author-menu li a {
+    display: block;
+    color: #7493c5;
+}
+
+.top_con .author:hover .author-menu {
+    display: block;
+}
+
+.top_con .author .author-menu li:hover {
+    background: #e4e4e4;
+}
+
+.top_con .author .author-menu::after {
+    content: "";
+    border: 12px solid transparent;
+    border-bottom-color: #fff;
+    position: absolute;
+    top: -24px;
+    left: 50px;
+}
+/* ========= loged end ============ */
+/*top end*/
+/*middle start*/
+.middle{
+    width: 100%;
+}
+.middle .mid-con{
+    width: 1200px;
+    margin: 0 auto;
+}
+/*middle end*/
+/*bottom start*/
+.bottom .bot1{
+    width: 100%;
+    height: 120px;
+    background: #696969;
+}
+.bottom .bot1 .bot_con{
+    width: 1200px;
+    height: 120px;
+    background: #696969;
+    margin: 0 auto;
+}
+.bottom .bot1 .bot_con .logo{
+    height: 100%;
+    width: 250px;
+    background: url("https://www.python.org/static/img/python-logo.png")no-repeat 0 20px;
+    float: left;
+    margin-right: 60px;
+}
+.bottom .bot1 .bot_con p{
+    line-height: 30px;
+    text-align: center;
+}
+.bottom .bot1 .bot_con .link-on{
+    padding-top: 30px;
+}
+.bottom .bot1 .bot_con .link-on .about-me{
+    margin-left: 20px;
+}
+.bottom .bot2{
+    width: 100%;
+    height: 80px;
+    background: #141414;
+}
+.bottom .bot2 .bot_con{
+    width: 1200px;
+    height: 80px;
+    background: #141414;
+    margin: 0 auto;
+}
+.bottom .bot2 .bot_con p{
+    text-align: center;
+    color:white;
+    line-height: 80px;
+}
+.bottom .bot1 .bot_con .address .tel{
+    margin-left: 30px;
+}
+/*bottom start*/

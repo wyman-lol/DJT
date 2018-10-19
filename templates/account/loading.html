@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block title %}
+    登陆
+{% endblock %}
+{% block style_link %}
+    <link rel="stylesheet" href="/static/css/account/loading.css">
+{% endblock %}
+{% block mid_con %}
+    <!--middle start-->
+    <div class="mid-con">
+        <div class="bigout">
+            <div class="out">
+                <div class="inter">
+                    <p>请登陆</p>
+                    <a href="{% url 'account:register' %}">立即注册&gt;</a>
+                </div>
+                <form  action="" method="post">
+                    <p><input class="num" type="tel" name=telephone placeholder="请输入手机号"></p>
+                    <p><input class="passw" name=password type="password" placeholder="请输入密码"></p>
+                    <p style="height: 50px; line-height: 50px;">
+                        &emsp;<input class="check" name=remember type="checkbox" value="autolaod">七天内自动登陆
+                        <a href="" class="res" >忘记密码?</a>
+                    </p>
+                    <p><a href="javascript:void(0);" class="loading" >登陆</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--middle end-->
+{% endblock %}
+{% block script_link %}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="/static/js/account/loading.js"></script>
+    <script src="/static/js/base/message.js"></script>
+    <script src="/static/js/base/common.js"></script>
+{% endblock %}

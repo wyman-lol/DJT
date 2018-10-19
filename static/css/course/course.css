@@ -1,0 +1,89 @@
+/*====middle start====*/
+/*====mid-top start====*/
+.middle .mid-top{
+    background: white;
+    height: 65px;
+    width: 100%;
+}
+.middle .mid-top .menu{
+    height: 65px;
+    width: 1200px;
+    background: white;
+    margin: 0 auto;
+}
+.middle .mid-top .menu h3{
+    float: left;
+    line-height: 65px;
+    margin-right: 60px;
+    font-size: 22px;
+    font-weight: normal;
+}
+.middle .mid-top .menu  ul li{
+    float: left;
+    margin-left: 20px;
+    line-height: 65px;
+    font-size: 18px;
+    color: gray;
+}
+.middle .mid-top .menu  ul li:hover{
+    text-shadow: 1px 1px 2px #696969;
+}
+.middle .mid-top .menu ul li.activate{
+    color: black;
+}
+/*====mid-top end====*/
+/*====mid-con start====*/
+.middle .mid-con{
+    height: 800px;
+    width: 1200px;
+    margin: 0 auto;
+    background: skyblue;
+}
+.middle .mid-con .con-list{
+    position: relative;
+}
+.middle .mid-con .con-list .con{
+    position: absolute;
+    display: none;
+}
+.middle .mid-con .con-list .con.show{
+    display: block;
+}
+.middle .mid-con .con-list .con .course-list ul li{
+    margin: 20px;
+    float: left;
+}
+.middle .mid-con .con-list .con .course-list ul li img{
+    width: 260px;
+    height: 158px;
+}
+.middle .mid-con .con-list .con .course-list ul li .course{
+    width: 220px;
+    height: 158px;
+    background: white;
+    position: relative;
+    padding: 0 20px;
+}
+.middle .mid-con .con-list .con .course-list ul li .course h3{
+    font-size: 22px;
+    font-weight: normal;
+}
+.middle .mid-con .con-list .con .course-list ul li .course .message{
+    overflow: hidden; /*超出部分隐藏*/
+    text-overflow: ellipsis; /*省略号*/
+    display: -webkit-box;   /*样式*/
+    -webkit-box-orient: vertical;   /*对齐*/
+    -webkit-line-clamp: 2;  /*省略号出现的在第二行*/
+    line-height: 40px;
+    font-size: 18px;
+    color: grey;
+}
+.middle .mid-con .con-list .con .course-list ul li .course .price{
+    color: green;
+    line-height: 40px;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+/*====mid-top end====*/
+/*====middle end====*/

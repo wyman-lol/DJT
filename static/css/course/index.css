@@ -1,0 +1,395 @@
+/*====middle star====*/
+/*====con-left star====*/
+.middle .mid-con .con-left{
+    width: 800px;
+    float: left;
+}
+/*====banner start====*/
+.middle .mid-con .con-left .banner{
+    height: 200px;
+    width: 800px;
+    position: relative;
+    margin: 20px auto;
+}
+.middle .mid-con .con-left .banner .photo img{
+    height: 200px;
+    width: 800px;
+    position: absolute;
+    display: none;
+}
+.middle .mid-con .con-left .banner .photo .show{
+    display: block;
+}
+.middle .mid-con .con-left .banner .btn .left{
+    position: absolute;
+    left: 20px;
+}
+.middle .mid-con .con-left .banner .btn .right{
+    position: absolute;
+    right: 20px;
+}
+.middle .mid-con .con-left .banner .btn{
+    font-size: 60px;
+    line-height: 200px;
+    color: white;
+    display: none;
+}
+.middle .mid-con .con-left .banner:hover .btn{
+    display: block;
+}
+.middle .mid-con .con-left .banner .select li{
+    height: 15px;
+    width: 15px;
+    border: 1px solid white;
+    border-radius: 50%;
+    float: left;
+    margin: 5px;
+}
+.middle .mid-con .con-left .banner .select{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -54px;
+}
+.middle .mid-con .con-left .banner .select .activate{
+    background: white;
+}
+.middle .mid-con .con-left .banner .select li:hover{
+    background: white;
+}
+/*====banner end====*/
+/*====new start====*/
+.news{
+    width: 800px;
+    height: 200px;
+    background: white;
+    border-bottom: 1px solid dimgrey;
+}
+.news .news-list{
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.news .news-list li{
+    width:245px;
+    height: 180px;
+    background: yellow;
+    float: left;
+    margin-left: 6px;
+    position: relative;
+    overflow: hidden;       /*超出范围隐藏*/
+}
+.news .news-list li:hover img{
+    transform: scale(1.3);  /*图片放大*/
+}
+.news .news-list li img{
+    width: 245px;
+    height: 180px;
+    transition: all 500ms;  /*图片放大速度*/
+}
+.news .news-list li p{
+    width: 245px;
+    height: 60px;
+    background: rgba(0,0,0,0.3);    /*颜色加透明度*/
+    color: white;
+    line-height: 30px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+}
+/*====nwe end====*/
+/*====menus start====*/
+.menus{
+    width: 800px;
+    height: 430px;
+    background: white;
+    /*padding: 20px 20px 0px 20px;*/
+}
+.menus .title{
+    margin: 10px 20px;
+}
+.menus .title li{
+    float: left;
+    padding: 0 20px;
+    cursor: pointer;    /*箭头变小手*/
+}
+.menus .title li:hover{
+    text-shadow: 1px 1px 2px #505050;
+}
+.menus .title li.activate{
+    border-left: 4px solid blue;
+}
+.menus .menus-con{
+    width: 760px;
+    height: 342px;
+    position: relative;
+    margin-left: 20px;
+}
+.menus .menus-con li .info{
+    width: 760px;
+    height: 161px;
+    border-bottom: 1px solid dimgrey;
+    padding: 20px 0px;
+}
+.menus .menus-con li{
+    position: absolute;
+    display: none;
+}
+.menus .menus-con li.show{
+    display: block;
+}
+.menus .menus-con li .info .pic{
+    float: left;
+}
+.menus .menus-con li .info .text{
+    height: 160px;
+    width: 490px;
+    float: left;
+    margin-left: 20px;
+}
+.menus .menus-con li .info .text h4{
+    font-size: 22px;
+    font-weight: normal;
+    height: 52px;
+    line-height: 26px;
+}
+.menus .menus-con li .info .text p {
+    line-height: 22px;
+    color: #666666;
+}
+.menus .menus-con li .info .text .other{
+    margin-top: 30px;
+}
+.menus .menus-con li .info .text .other .hot{
+    color: green;
+    float: left;
+}
+.menus .menus-con li .info .text .other .time{
+    float: right;
+}
+.menus .menus-con li .info .text .other .author{
+    float: right;
+    margin-right: 20px;
+}
+.menus .menus-con li .info .pic img{
+    height: 160px;
+    width: 230px;
+}
+/*====menus end====*/
+/*====a start====*/
+.middle .con-left a{
+    display: block;
+    height: 50px;
+    width: 300px;
+    margin: 0 auto;
+    background: #4bb1ff;
+    line-height: 50px;
+    text-align: center;
+    margin-top: 30px;
+
+}
+/*====a end====*/
+/*====con-left end====*/
+/*====con_right start====*/
+/*====class start====*/
+.middle .mid-con .con-right{
+    width: 360px;
+    background: #ffffff;
+    float: right;
+    margin-top: 20px;
+}
+.middle .mid-con .con-right .offline-class h3{
+    line-height: 60px;
+    color: black;
+    font-size: 18px;
+    padding: 0 20px;
+}
+.middle .mid-con .con-right .offline-class h3 a{
+    font-size: 14px;
+    color: skyblue;
+    float: right;
+}
+.middle .mid-con .con-right .offline-class .pic{
+    width: 320px;
+    height: 210px;
+    margin: 0 auto;
+    position: relative;
+}
+.middle .mid-con .con-right .offline-class .pic img{
+    width: 320px;
+    height: 210px;
+}
+.middle .mid-con .con-right .offline-class .pic p{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 320px;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    line-height: 40px;
+}
+.middle .mid-con .con-right .offline-class .status{
+    height: 85px;
+    width: 320px;
+    padding: 0 20px;
+    border-bottom: 1px solid gray;
+}
+.middle .mid-con .con-right .offline-class .status li{
+    height: 40px;
+    line-height: 40px;
+}
+.middle .mid-con .con-right .offline-class .status  li span{
+    color: #000;
+    font-size: 15px;
+}
+.middle .mid-con .con-right .offline-class .status li .starting{
+    color: blue;
+    border: 1px solid blue;
+    margin-right: 20px;
+}
+.middle .mid-con .con-right .offline-class .status li .ending{
+    color: #666666;
+    border: 1px solid #666666;
+    margin-right: 20px;
+}
+.middle .mid-con .con-right .online-class h3{
+    line-height: 60px;
+    color: black;
+    font-size: 18px;
+    padding: 0 20px;
+}
+.middle .mid-con .con-right .online-class h3 a{
+    font-size: 14px;
+    color: skyblue;
+    float: right;
+}
+.middle .mid-con .con-right .online-class .pic{
+    width: 320px;
+    height: 210px;
+    margin: 0 auto;
+    position: relative;
+}
+.middle .mid-con .con-right .online-class .pic img{
+    width: 320px;
+    height: 210px;
+}
+.middle .mid-con .con-right .online-class .pic p{
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 320px;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    text-align: center;
+    line-height: 40px;
+}
+.middle .mid-con .con-right .online-class .status{
+    height: 85px;
+    width: 320px;
+    padding: 0 20px;
+    border-bottom: 1px solid gray;
+}
+.middle .mid-con .con-right .online-class .status li{
+    height: 40px;
+    line-height: 40px;
+}
+.middle .mid-con .con-right .online-class .status  li span{
+    color: #000;
+    font-size: 15px;
+}
+.middle .mid-con .con-right .online-class .status li .starting{
+    color: blue;
+    border: 1px solid blue;
+    margin-right: 20px;
+}
+.middle .mid-con .con-right .online-class .status li .ending{
+    color: #666666;
+    border: 1px solid #666666;
+    margin-right: 20px;
+}
+/*====class end====*/
+/*====attention start====*/
+.middle .mid-con .con-right .attention-me{
+    border-bottom: 1px solid gray;
+}
+.middle .mid-con .con-right .attention-me h3{
+    line-height: 60px;
+    color: black;
+    font-size: 18px;
+    padding: 0 20px;
+}
+.middle .mid-con .con-right .attention-me .info{
+    float: left;
+}
+.middle .mid-con .con-right .attention-me .info li{
+    line-height: 50px;
+}
+.middle .mid-con .con-right .attention-me .info li i{
+    font-size: 30px;
+    padding: 0 20px;
+}
+.middle .mid-con .con-right .attention-me .attention{
+    width: 100px;
+    height: 100px;
+    float: right;
+    background: url("../wechat.png") no-repeat center/100%;
+    margin: 20px 20px 0 0;
+}
+.middle .mid-con .con-right .attention-me .attention p{
+    line-height: 32px;
+    margin-top: 100px;
+    text-align: center;
+}
+/*====attention end====*/
+/*hot-recomend start*/
+.middle .mid-con .con-right .hot-recommend h3{
+    line-height: 60px;
+    color: black;
+    font-size: 18px;
+    padding: 0 20px;
+}
+.middle .mid-con .con-right .hot-recommend .hot-news li{
+    border-bottom: 1px solid #666666;
+    padding: 20px 0 20px 0;
+}
+.middle .mid-con .con-right .hot-recommend .hot-news .news-con{
+    float: left;
+}
+.middle .mid-con .con-right .hot-recommend .hot-news .news-con p{
+    width: 200px;
+    height: 50px;
+    line-height: 25px;
+    padding: 0 20px;
+    overflow: hidden; /*超出部分隐藏*/
+    text-overflow: ellipsis; /*省略号*/
+    display: -webkit-box;   /*样式*/
+    -webkit-box-orient: vertical;   /*对齐*/
+    -webkit-line-clamp: 2;  /*省略号出现的在第二行*/
+}
+.middle .mid-con .con-right .hot-recommend .hot-news .news-con .other{
+    width: 200px;
+    padding: 0 20px;
+    margin: 10px 0 20px 0;
+}
+.middle .mid-con .con-right .hot-recommend .hot-news .news-con .other .hot{
+    float: left;
+    color: green;
+}
+.middle .mid-con .con-right .hot-recommend .hot-news .news-con .other .time{
+    float: right;
+}
+.middle .mid-con .con-right .hot-recommend .hot-news .pic{
+    float: right;
+    width: 100px;
+    height: 75px;
+    margin-right: 20px;
+}
+.middle .mid-con .con-right .hot-recommend .hot-news .pic img{
+    width: 100px;
+    height: 75px;
+}
+/*hot-recomend end*/
+/*====con_right end====*/
+/*====middle end====*/

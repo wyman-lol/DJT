@@ -1,0 +1,108 @@
+/*register start*/
+.out{
+    width: 500px;
+    height: 580px;
+    vertical-align:middle;
+    background:white;
+    margin: 50px auto;
+    border: 2px solid #e8dede;
+}
+.inter{width: 460px;
+    height: 50px;
+    vertical-align:middle;
+    background:white;
+    margin: 10px auto;
+    border-bottom: 1px solid #e8dede;
+}
+.inter p{float: left;
+    line-height: 50px;
+    font-size: larger;
+    height: 50px;
+    border-bottom: 3px solid #8623e1;
+    box-sizing: border-box;
+    display: table-cell;
+}
+.inter a{float: right;
+    line-height: 50px;
+    font-size: larger;
+    text-decoration: none;
+    color: #84cdeb;
+}
+form{width: 460px;
+    height: 430px;
+    background:white;
+    margin: 10px auto;
+    }
+.num{
+    height: 50px;
+    width: 440px;
+    border: 1px solid #e8dede;
+    margin: 10px;
+    border-radius:4px;
+    line-height: 50px;
+    font-size: large;
+}
+.message{
+    height: 50px;
+    width: 300px;
+    border: 1px solid #e8dede;
+    margin: 10px;
+    border-radius:4px;
+    line-height: 50px;
+    font-size: large;
+}
+.use{
+    height: 50px;
+    width: 440px;
+    border: 1px solid #e8dede;
+    margin: 10px;
+    border-radius:4px;
+    line-height: 50px;
+    font-size: large;
+}
+.passw{
+    height: 50px;
+    width: 440px;
+    border: 1px solid #e8dede;
+    margin: 10px;
+    border-radius:4px;
+    line-height: 50px;
+    font-size: large;
+}
+.verify{
+    height: 50px;
+    width: 300px;
+    border: 1px solid #e8dede;
+    margin: 10px;
+    border-radius:4px;
+    line-height: 50px;
+    font-size: large;
+    vertical-align:middle
+}
+.register{
+    height: 50px;
+    width: 440px;
+    background: deepskyblue;
+    border: 1px solid #e8dede;
+    margin: 10px;
+    border-radius:4px;
+    line-height: 50px;
+    font-size: large;
+    color: white;
+}
+.send{
+    height: 50px;
+    width: 125px;
+    border: 1px solid #8623e1;
+    border-radius:4px;
+    background: none;
+    color: #8623e1;
+}
+.png{
+    height: 50px;
+    width: 125px;
+    border: 1px solid #8623e1;
+    border-radius:4px;
+    vertical-align: middle;
+}
+/*register end*/

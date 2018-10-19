@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="/static/css/base/reset.css">
+    <link rel="stylesheet" href="/static/css/base/common.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_829410_coh69vo4du7.css">
+    {% block style_link %}
+
+    {% endblock %}
+</head>
+<body>
+    <!--top start-->
+    <div class="top">
+        <div class="top_con">
+            <div class="logo"></div>
+            <ul class="menu">
+                <li class="show"><a href="">首页</a></li>
+                <li><a href="course.html">在线课堂</a></li>
+                <li><a href="javascript:void(0)">文档下载</a></li>
+                <li><a href="search.html">搜索</a></li>
+
+            </ul>
+            <div class="load">
+                {% if user.is_authenticated %}
+                    <!-- logged start -->
+                    <div class="author">
+                        <i class="iconfont icon-user"></i>
+                        <span>{{ user.username }}</span>
+                        <ul class="author-menu">
+                            {% if user.is_staff %}
+                                <li><a href="javascript:void(0);">后台管理</a></li>
+                            {% endif %}
+                            <li><a href="{% url 'account:out_view' %}">退出登录</a></li>
+                        </ul>
+                    </div>
+                    <!-- loged end -->
+                {% else %}
+                    <i class="iconfont icon-user"></i>
+                    <a href="{% url 'account:register' %}">注册</a>
+                    /
+                    <a href="{% url 'account:register' %}">登陆</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--top end-->
+    <!--middle start-->
+    <div class="middle">
+            {% block mid_con %}
+
+            {% endblock %}
+    </div>
+    <!--middle end-->
+    <!--bottom start-->
+    <div class="bottom">
+        <div class="bot1">
+            <div class="bot_con">
+                <div class="logo"></div>
+                <p class="link-on">
+                    <span class="link"><a href="javascript:void(0)">人生苦短 |</a></span>
+                    <span class="link"><a href="javascript:void(0)">我用python |</a></span>
+                    <span class="link"><a href="javascript:void(0)">举杯邀明月 |</a></span>
+                    <span class="link"><a href="javascript:void(0)">对影成三人 |</a></span>
+                    <span class="link"><a href="javascript:void(0)">但愿人长久 |</a></span>
+                    <span class="link"><a href="javascript:void(0)">千里共婵娟 |</a></span>
+                    <span class="about-me"><a href="javascript:void(0)">
+                        <i class="iconfont icon-wechat"></i>卢伟民</a></span>
+                </p>
+                <p class="address">
+                    <span class="addr">地址：中华人民共和国广东省广州市</span>
+                    <span class="tel">电话：400-10086-10086</span>
+                </p>
+            </div>
+        </div>
+        <div class="bot2">
+            <div class="bot_con">
+                <p>Copyright &copy; 2017 All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+    <!--bottom end-->
+    {% block script_link %}
+
+    {% endblock %}
+</body>
+</html>
