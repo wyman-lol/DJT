@@ -135,3 +135,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
+ACCESS_KEY_ID = "LTAIUNmZMjuV6f2k"
+ACCESS_KEY_SECRET = "izKqv9rYlKSX6XjjhIro1DcEvPzVB1"
+
+SIGN_NAME = '付帅帅'
+tel_code = "SMS_142947701"

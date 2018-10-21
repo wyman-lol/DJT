@@ -3,7 +3,7 @@
     注册
 {% endblock %}
 {% block style_link %}
-<link rel="stylesheet" href="/static/css/account/register.css"
+<link rel="stylesheet" href="/static/css/account/register.css">
 {% endblock %}
 {% block mid_con %}
     <!--middle start-->
@@ -13,13 +13,13 @@
                 <p>请注册</p>
                 <a href="{% url 'account:loading' %}">立即登陆&gt;</a>
             </div>
-            <form  action="" method="post">{% csrf_token %}
-                <p><input class="num" type="text" placeholder="请输入手机号"></p>
-                <p><input class="message" type="text" placeholder="请输入短信验证码"><input class="send" type="button" value="发送验证码"></p>
-                <p><input class="use" type="text" placeholder="请输入用户名"></p>
-                <p><input class="passw" type="password" placeholder="请输入密码"></p>
-                <p><input class="passw" type="password" placeholder="请再次输入密码"></p>
-                <p><input class="verify" type="text" placeholder="请输入图形验证码"><img class="png"  src="{% url 'account:graph-captcha' %}"></p>
+            <form  action="" method="post">
+                <p><input class="telephone" type="text" placeholder="请输入手机号"></p>
+                <p><input class="sms_captcha" type="text" placeholder="请输入短信验证码"><input class="send" type="button" value="发送验证码"></p>
+                <p><input class="username" type="text" placeholder="请输入用户名"></p>
+                <p><input class="password" type="password" placeholder="请输入密码"></p>
+                <p><input class="repeat_password" type="password" placeholder="请再次输入密码"></p>
+                <p><input class="graph_captcha" type="text" placeholder="请输入图形验证码"><img class="png"  src="{% url 'account:graph-captcha' %}"></p>
                 <p><input class="register" type="submit" value="立即注册"></p>
             </form>
         </div>
@@ -29,4 +29,6 @@
 {% block script_link%}
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
     <script src="/static/js/account/register.js"></script>
+    <script src="/static/js/base/message.js"></script>
+    <script src="/static/js/base/common.js"></script>
 {% endblock %}

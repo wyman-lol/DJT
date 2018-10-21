@@ -26,12 +26,14 @@
 
             </ul>
             <div class="load">
+                {#判断用户是否登陆#}
                 {% if user.is_authenticated %}
                     <!-- logged start -->
                     <div class="author">
                         <i class="iconfont icon-user"></i>
                         <span>{{ user.username }}</span>
                         <ul class="author-menu">
+                            {#判断用户是否是员工#}
                             {% if user.is_staff %}
                                 <li><a href="javascript:void(0);">后台管理</a></li>
                             {% endif %}
