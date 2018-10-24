@@ -334,7 +334,7 @@
     width: 100px;
     height: 100px;
     float: right;
-    background: url("../wechat.png") no-repeat center/100%;
+    background: url("/static/img/wechat.png") no-repeat center/100%;
     margin: 20px 20px 0 0;
 }
 .middle .mid-con .con-right .attention-me .attention p{

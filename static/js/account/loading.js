@@ -22,15 +22,22 @@ $(function () {
                 console.log(res);
                 if(res["code"]===1){
                   message.showSuccess("登录成功");
-                  setTimeout(()=>{
-                      // 重定向当前页面url
+                  // window.location.href重定向当前页面url
+                  let next_url = window.location.href.split('=')[1];
+                  console.log(next_url);
+                  if(next_url){
+                    setTimeout(()=>{
+                          window.location.href=next_url;
+                          }, 1000
+                    )
+                  }
+                  else{
                       window.location.href='/course/index/';
-                      }, 1000
-                  )
+                  }
 
                 }
                 else{
-                  message.showError(res["msg"])
+                  message.showError(res["msg"]);
                 }
             },
             error: err=>{
@@ -40,7 +47,7 @@ $(function () {
         });
         }
         else{
-            message.showError('手机号码不能为空')
+            message.showError('手机号码不能为空');
         }
     });
 });
