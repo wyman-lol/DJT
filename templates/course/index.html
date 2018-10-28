@@ -1,9 +1,10 @@
 {% extends 'base/base.html' %}
+{% load new_filter %}
 {% block title %}
     首页
 {% endblock %}
 {% block style_link %}
-<link rel="stylesheet" href="/static/css/course/index.css"
+<link rel="stylesheet" href="/static/css/course/index.css">
 {% endblock %}
 {% block mid_con %}
     <!--middle start-->
@@ -44,135 +45,36 @@
                         </li>
                     </ul>
                 </div>
-                <div class="menus">
+                <div class="menus clearfix">
                     <ul class="title clearfix">
-                        <li class="activate">最新资讯</li>
-                        <li>热门消息</li>
-                        <li>新闻娱乐</li>
-                        <li>科学宇宙</li>
+                        {% for tag in news_tags %}
+                            <li>{{ tag.tag_name }}</li>
+                        {% endfor %}
+{#                    <li class="activate">{{ tag.tag_name }}</li>#}
                     </ul>
                     <ul class="menus-con clearfix">
                         <li class="show">
-                            <div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
+                            {% for new in news %}
+                                <div class="info">
+                                    <div class="pic">
+                                        <img src="{{ new.photo_url }}">
+                                    </div>
+                                    <div class="text">
+                                        <h4><a href="{% url 'news:news_detail' news_id=new.id %}" style="color: #000000;">{{ new.title }}</a></h4>
+                                        <p>{{ new.desc }}</p>
+                                        <div class="other">
+{#    ======================================数据库表的联级查询 =========================#}
+                                            <span class="hot">{{ new.tag.tag_name }}</span>
+                                            <span class="time">{{ new.add_time|date_format }}</span>
+                                            <span class="author">{{ new.author.username }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </li>
-                        <li>
-                            <div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li><div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="info">
-                                <div class="pic">
-                                    <img src="https://res.shiguangkey.com//file/201806/01/20180601202006677835073.png">
-                                </div>
-                                <div class="text">
-                                    <h4>争议中的拼多多，面对的不只是舆论危机</h4>
-                                    <p>对于拼多多而言，当下面临的最大问题，并不是什么舆论危机，舆论危机只是结果，不是原因。否则，应对危机的对策就要跑偏了。</p>
-                                    <div class="other">
-                                        <span class="hot">热点</span>
-                                        <span class="time">一分钟</span>
-                                        <span class="author">卢伟民</span>
-                                    </div>
-                                </div>
-                            </div></li>
                     </ul>
                 </div>
-                <a href="javascript:void(0)">加载更多</a>
+                <a href="javascript:void(0)" class="load_multi">加载更多</a>
             </div>
             <div class="con-right">
                 <div class="offline-class">

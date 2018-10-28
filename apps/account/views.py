@@ -75,6 +75,7 @@ def graph_chptcha(request):
     Mymemcache.set_key(text.lower(), text.lower(), time=60*10)
     # 设置一个httpresponse返回图片
     result = HttpResponse(content_type='image/png')
+    # 写入图片
     result.write(photo.read())
     return result
 

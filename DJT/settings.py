@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9x@p&(9lwxjc2g_@+-*l)5d9uoe2rz2j4y23&g+@3bs!nzub-w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 # 自定义的auth表覆盖原生的
@@ -133,13 +133,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+# 添加静态文件路径
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-# ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
+# 阿里云的短信服务
 ACCESS_KEY_ID = "LTAIUNmZMjuV6f2k"
 ACCESS_KEY_SECRET = "izKqv9rYlKSX6XjjhIro1DcEvPzVB1"
 
 SIGN_NAME = '付帅帅'
 tel_code = "SMS_142947701"
+
+# media 上传文件配置路由
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

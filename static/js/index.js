@@ -53,12 +53,14 @@ $(function(){
         index = num;
         $obj1.eq(index).fadeIn(1000);
         $obj2.eq(index).addClass('activate');
-    };
+    }
     var $title=$('.menus .title li');
     var $content=$('.menus .menus-con li');
     var index=0;
+    // 初始化给第一个标签添加蓝色粗线index=0
+    change($content,$title,index);
     $title.click(function(){
         var number = $(this).index();
         change($content,$title,number);
     })
-})
+});

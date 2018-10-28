@@ -15,9 +15,15 @@ Including another URLconf
 """
 # from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from DJT import settings
 urlpatterns = [
     path('account/', include('apps.account.urls')),
     path('course/', include('apps.course.urls')),
     path('doc/', include('apps.doc.urls')),
     path('admin/', include('apps.admin_staff.urls')),
-]
+    path('news/', include('apps.news.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# static拼接一个路径列表到原来的列表里面，这样就可以访问media里面的文件了
+

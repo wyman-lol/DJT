@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% load new_filter %}
+{% block title %}新闻详情页{% endblock %}
+{% block style_link %}
+    <link rel="stylesheet" href="/static/css/news/news_detail.css">
+    <link rel="stylesheet" href="/static/css/news/con_right.css">
+{% endblock %}
+
+{% block mid_con %}
+    <!-- main start -->
+    <main id="main">
+        <div class="w1200 clearfix">
+            <!-- news-contain start  -->
+            <div class="news-contain">
+                <h1 class="news-title">{{ news.title }}</h1>
+                <div class="news-info">
+                    <div class="news-info-left">
+                        <span class="news-author">{{ news.author.username}}</span>
+                        <span class="news-pub-time">{{ new.add_time|date_format }}</span>
+                        <span class="news-type">{{ news.tag.tag_name }}</span>
+                    </div>
+                </div>
+                <article class="news-content">
+                    {{ news.content|safe }}
+                    <div style="height: 10px;"></div>
+                    <img src="{{ news.photo_url }}">
+                </article>
+                <div class="comment-contain">
+                    <div class="comment-pub clearfix">
+                        <div class="new-comment">
+                            文章评论(<span class="comment-count">0</span>)
+                        </div>
+                        <div class="comment-control logged-comment">
+                            <input type="text" placeholder="请填写评论">
+                        </div>
+                        <div class="comment-control please-login-comment" style="display: none;">
+                            <input type="text" placeholder="请登录后参加评论" readonly>
+                        </div>
+                        <button class="comment-btn" data-news-id="新闻id">发表评论</button>
+                    </div>
+                    <ul class="comment-list">
+                        <li class="comment-item">
+                            <div class="comment-info clearfix">
+                                <img src="./static/images/avatar.jpeg" alt="avatar" class="comment-avatar">
+                                <span class="comment-user">评论作者</span>
+                                <span class="comment-pub-time">刚刚</span>
+                            </div>
+                            <div class="comment-content">这文章写的真好</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- news-contain end  -->
+            {% include 'base/con_right.html' %}
+        </div>
+    </main>
+    <!-- main end -->
+{% endblock %}
