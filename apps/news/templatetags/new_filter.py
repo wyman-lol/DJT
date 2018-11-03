@@ -4,7 +4,7 @@ from datetime import datetime
 
 register = template.Library()
 
-
+# 自定义的时间过滤器
 @register.filter
 def date_format(val):
     if isinstance(val, datetime):

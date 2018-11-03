@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9x@p&(9lwxjc2g_@+-*l)5d9uoe2rz2j4y23&g+@3bs!nzub-w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 # 自定义的auth表覆盖原生的
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.doc.apps.DocConfig',
     'apps.account.apps.AccountConfig',
     'apps.admin_staff',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,7 @@ tel_code = "SMS_142947701"
 # media 上传文件配置路由
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 七牛aksk
+QINIU_AK='4x46lmb6csoBE6wBFku8SOLcO3alz97l3LXqhp1e'
+QINIU_SK='lmFNNV9NuzuZtbnSGGL7lV8xj4ya2wmW7GmkUktv'

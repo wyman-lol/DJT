@@ -6,8 +6,10 @@ $(function () {
     editor.create();
 
 // ================== 上传至服务器 ================
-    let $uploadThumbnail = $("#upload-news-thumbnail");
+//     获取图片输入标签元素
     let $thumbnailUrl = $("#news-thumbnail-url");
+// ================== 上传至服务器 ================
+    let $uploadThumbnail = $("#upload-news-thumbnail");
     $uploadThumbnail.change(function () {
         // 获取文件
         let file = this.files[0];
@@ -36,7 +38,45 @@ $(function () {
             }
         });
     });
-
+// ================== 上传至七牛（云存储平台） ================
+    let $progressBar = $(".progress-bar");
+    QINIU.upload({
+        // 七牛空间域名
+        "domain": "http://phd0sewyt.bkt.clouddn.com/",
+        // 后台返回 token的地址
+        "uptoken_url": "/news/up-token/",
+        // 按钮
+        "browse_btn": "upload-btn",
+        // 成功
+        "success": (up, file, info) => {
+            let domain = up.getOption('domain');
+            let res = JSON.parse(info);
+            let filePath = domain + res.key;
+            $thumbnailUrl.val('');
+            $thumbnailUrl.val(filePath);
+        },
+        // 失败
+        "error": (up, err, errTip) => {
+            console.log('error');
+            console.log(up);
+            console.log(err);
+            console.log(errTip);
+            console.log('error');
+        },
+        // 上传文件的过程中 七牛对于 4M 秒传
+        "progress": (up, file) => {
+            let percent = file.percent;
+            $progressBar.parent().css("display", 'block');
+            $progressBar.css("width", percent + '%');
+            $progressBar.text(parseInt(percent) + '%');
+        },
+        // 完成后 去掉进度条
+        "complete": () => {
+            $progressBar.parent().css("display", 'none');
+            $progressBar.css("width", '0%');
+            $progressBar.text('0%');
+        }
+    });
 
     // ========= 发表新闻 ==========
     let $newsBtn = $("#btn-pub-news");
@@ -73,7 +113,7 @@ $(function () {
             success: res => {
                 if (res["code"] === 1) {
                     ALERT.alertNewsSuccessCallback("新闻发表成功", '跳到首页', () => {
-                        window.location.href = '/admin/staff/';
+                        window.location.href = '/course/index/';
                     });
                 } else {
                     ALERT.alertErrorToast(res["msg"]);

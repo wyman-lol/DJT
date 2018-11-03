@@ -60,7 +60,7 @@
                                         <img src="{{ new.photo_url }}">
                                     </div>
                                     <div class="text">
-                                        <h4><a href="{% url 'news:news_detail' news_id=new.id %}" style="color: #000000;">{{ new.title }}</a></h4>
+                                        <h4><a href="{% url 'news:news_detail' news_id=new.id %}" target="_blank" style="color: #000000;">{{ new.title }}</a></h4>
                                         <p>{{ new.desc }}</p>
                                         <div class="other">
 {#    ======================================数据库表的联级查询 =========================#}

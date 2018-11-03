@@ -30,22 +30,20 @@
                         <div class="new-comment">
                             文章评论(<span class="comment-count">0</span>)
                         </div>
-                        <div class="comment-control logged-comment">
-                            <input type="text" placeholder="请填写评论">
-                        </div>
-                        <div class="comment-control please-login-comment" style="display: none;">
-                            <input type="text" placeholder="请登录后参加评论" readonly>
-                        </div>
-                        <button class="comment-btn" data-news-id="新闻id">发表评论</button>
+                        {% if user.is_authenticated %}
+                            <div class="comment-control logged-comment">
+                                <input type="text" placeholder="请填写评论">
+                            </div>
+                        {% else %}
+                            <div class="comment-control please-login-comment">
+                                <input type="text" placeholder="请登录后参加评论" readonly>
+                            </div>
+                        {% endif %}
+                        <button class="comment-btn" data-news-id="{{ news.id }}">发表评论</button>
                     </div>
                     <ul class="comment-list">
                         <li class="comment-item">
-                            <div class="comment-info clearfix">
-                                <img src="./static/images/avatar.jpeg" alt="avatar" class="comment-avatar">
-                                <span class="comment-user">评论作者</span>
-                                <span class="comment-pub-time">刚刚</span>
-                            </div>
-                            <div class="comment-content">这文章写的真好</div>
+
                         </li>
                     </ul>
                 </div>
@@ -55,4 +53,12 @@
         </div>
     </main>
     <!-- main end -->
+{% endblock %}
+{% block script_link %}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="/static/js/base/common.js"></script>
+    <script src="/static/js/news/news_detail.js"></script>
+    <script src="/static/js/admin_staff/fsweetalert.js"></script>
+    <script src="/static/js/admin_staff/sweetalert.min.js"></script>
+    <script src="/static/js/base/message.js"></script>
 {% endblock %}
