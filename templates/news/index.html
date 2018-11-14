@@ -1,0 +1,130 @@
+{% extends 'base/front_base.html' %}
+
+{% block title %}
+  首页
+{% endblock %}
+
+{% block link %}
+	<link rel="stylesheet" href="/static/css/news/index.css">
+{% endblock %}
+
+{% block main %}
+	<!-- main start -->
+	<main id="main">
+		<div class="w1200 clearfix">
+			<!-- main-contain start  -->
+			<div class="main-contain">
+				<!-- banner start -->
+				<div class="banner">
+					<ul class="pic">
+						<li style="display:block;"><a href="javascript:void(0);"><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537264084920&di=674290bae4e0f33ac252cff0ef95ec3f&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F3%2F57a1548ddd149.jpg"
+								 alt="test"></a></li>
+						<li><a href="javascript:void(0);"><img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2126622145,1468696620&fm=26&gp=0.jpg"
+								 alt="test"></a></li>
+						<li><a href="javascript:void(0);"><img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2775064463,1890836574&fm=26&gp=0.jpg"
+								 alt="test"></a></li>
+						<li><a href="javascript:void(0);"><img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3182804019,3354432715&fm=26&gp=0.jpg"
+								 alt="test"></a></li>
+					</ul>
+					<a href="javascript:void(0);" class="btn prev">
+						<i class="PyWhich py-arrow-left"></i></a>
+					<a href="javascript:void(0);" class="btn next">
+						<i class="PyWhich py-arrow-right"></i></a>
+					<ul class="tab">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<!-- banner end -->
+				<!-- content start -->
+				<div class="content">
+					<!-- recommend-news start -->
+					<ul class="recommend-news">
+						<li>
+							<a href="javascript:void(0);" target="_blank">
+								<div class="recommend-thumbnail">
+									<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537264084300&di=8f55d3ddef645bd7de02024e63224cd3&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201506%2F09%2F20150609130218_cKEZm.jpeg" alt="title">
+								</div>
+								<p class="info">人生苦短，我用Python</p>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" target="_blank">
+								<div class="recommend-thumbnail">
+									<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537264084300&di=8f55d3ddef645bd7de02024e63224cd3&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201506%2F09%2F20150609130218_cKEZm.jpeg" alt="title">
+								</div>
+								<p class="info">人生苦短，我用Python</p>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" target="_blank">
+								<div class="recommend-thumbnail">
+									<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1537264084300&di=8f55d3ddef645bd7de02024e63224cd3&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fblog%2F201506%2F09%2F20150609130218_cKEZm.jpeg" alt="title">
+								</div>
+								<p class="info">人生苦短，我用Python</p>
+							</a>
+						</li>
+					</ul>
+					<!-- recommend-news end -->
+					<!--  news-nav start-->
+					<nav class="news-nav">
+						<ul class="clearfix">
+							<li class="active"><a href="javascript:void(0)">最新资讯</a></li>
+
+							<li><a href="javascript:void(0)" data-id="2">热点</a></li>
+							<li><a href="javascript:void(0)" data-id="1">test</a></li>
+						</ul>
+					</nav>
+					<!--  news-nav end -->
+					<!-- news-contain start -->
+					<div class="news-contain">
+						<ul class="news-list">
+							<li class="news-item">
+								<a href="javascript:void(0);" class="news-thumbnail" target="_blank">
+									<img src="http://onj3s3zfw.bkt.clouddn.com/o_1cn1sfjir1l2ln3erni1hne8d77.gif" alt="title" title="test1111">
+								</a>
+								<div class="news-content">
+									<h4 class="news-title"><a href="javascript:void(0);">test1111</a></h4>
+									<p class="news-details">test1111test1111test1111test1111test1111test1111</p>
+									<div class="news-other">
+										<span class="news-type">热点</span>
+										<span class="news-time">刚刚</span>
+										<span class="news-author">Admin</span>
+									</div>
+								</div>
+							</li>
+							<li class="news-item">
+								<a href="javascript:void(0);" class="news-thumbnail" target="_blank">
+									<img src="http://onj3s3zfw.bkt.clouddn.com/o_1cmq2acf9180h1rep142h1coa138d7.jpg" alt="title" title="新闻30">
+								</a>
+								<div class="news-content">
+									<h4 class="news-title"><a href="javascript:void(0);">新闻30</a></h4>
+									<p class="news-details">新闻描述30新闻描述30新闻描述30新闻描述30</p>
+									<div class="news-other">
+										<span class="news-type">test</span>
+										<span class="news-time">5天前</span>
+										<span class="news-author">Admin</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<!-- news-contain end -->
+					<!-- btn-more start -->
+					<a href="javascript:void(0);" class="btn-more" id="btn-more" data-page="2">加载更多</a>
+					<!-- btn-more end -->
+				</div>
+				<!-- content end -->
+			</div>
+			<!-- main-contain end -->
+		  {% include 'base/side_base.html' %}
+		</div>
+	</main>
+	<!-- main end -->
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

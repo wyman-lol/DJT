@@ -19,5 +19,7 @@ def date_format(val):
         return '{:.0f}分钟前'.format(sec / 60)
     elif 60 * 60 <= sec < 60 * 60 * 24:
         return '{:.0f}小时前'.format(sec / 3600)
+    elif 60*60*24 <= sec <= 60*60*24*30:
+        return '{:.0f}天前'.format(sec / (3600*24))
     else:
         return val.strftime('%Y-%m-%d %H:%M')

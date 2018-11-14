@@ -12,8 +12,7 @@ from ..admin_staff.models import NewsTag
 from .models import News
 from qiniu import Auth
 from .models import NewsComment
-from .serializers import NewsCommentSerializers
-from django.contrib.auth.decorators import login_required
+from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers
 from utils.Mydecorators import ajax_login_reruired
 
 # 发布新闻页面
@@ -91,7 +90,6 @@ class AddNewsCommentView(View):
         if form.is_valid():
             news_id = form.cleaned_data.get('news_id')
             content = form.cleaned_data.get('content')
-            print(news_id, content)
             news = News.objects.filter(id=news_id,).first()
             if news:
                 comment = NewsComment.objects.create(content=content, author=request.user, news=news)
@@ -114,7 +112,34 @@ def comment_new(request):
         serializers = NewsCommentSerializers(news_comment, many=True)
         # print(type(serializers))<class 'rest_framework.serializers.ListSerializer'>  ListSerializer
         # print(type(serializers.data))<class 'rest_framework.utils.serializer_helpers.ReturnList'>   JsonSerializer
-        print(serializers.data)
         return json_status.result(data=serializers.data)
     else:
         return json_status.params_error(message='新闻不存在')
+
+
+def news_list(request):
+    tag_id = request.GET.get('tag_id')
+    page = int(request.GET.get('page', 1))
+    start_page = settings.ONE_PAGE_COUNT*(page - 1)
+    end_page = start_page + settings.ONE_PAGE_COUNT
+    newses = News.objects.defer('content').select_related('tag', 'author').filter(is_delete=0, tag_id =tag_id).all()[start_page: end_page]
+    if tag_id:
+        return json_status.result(data={'newses': NewsSerializers(newses, many=True).data})
+    else:
+        return json_status.params_error(message='新闻不存在')
+
+# 返回api接口  /news/tag/list/
+def news_tag_list(request):
+    news_tags = NewsTag.objects.filter(is_delete=False).all()
+    serizlizer = NesTagSerializers(news_tags, many=True)
+    return json_status.result(data={'tags': serizlizer.data})
+
+
+def news_with_tag(request):
+    tag_id = int(request.GET.get('tag_id', 0))
+    if tag_id:
+        newses = News.objects.filter(is_delete=False, tag=tag_id)
+    else:
+        newses = News.objects.filter(is_delete=False)
+    serizlizer = NewsSerializers(newses, many=True)
+    return json_status.result(data={'newses': serizlizer.data})

@@ -48,33 +48,37 @@
                 <div class="menus clearfix">
                     <ul class="title clearfix">
                         {% for tag in news_tags %}
-                            <li>{{ tag.tag_name }}</li>
+                            <li data-id="{{ tag.id }}" >{{ tag.tag_name }}</li>
                         {% endfor %}
 {#                    <li class="activate">{{ tag.tag_name }}</li>#}
                     </ul>
-                    <ul class="menus-con clearfix">
-                        <li class="show">
-                            {% for new in news %}
-                                <div class="info">
-                                    <div class="pic">
-                                        <img src="{{ new.photo_url }}">
-                                    </div>
-                                    <div class="text">
-                                        <h4><a href="{% url 'news:news_detail' news_id=new.id %}" target="_blank" style="color: #000000;">{{ new.title }}</a></h4>
-                                        <p>{{ new.desc }}</p>
-                                        <div class="other">
-{#    ======================================数据库表的联级查询 =========================#}
-                                            <span class="hot">{{ new.tag.tag_name }}</span>
-                                            <span class="time">{{ new.add_time|date_format }}</span>
-                                            <span class="author">{{ new.author.username }}</span>
+                    <div class="news-contain">
+                        <ul class="menus-con clearfix">
+                        {% for news in newses %}
+                            <li>
+                                {% for new in news %}
+                                    <div class="info">
+                                        <div class="pic">
+                                            <img src="{{ new.photo_url }}">
+                                        </div>
+                                        <div class="text">
+                                            <h4><a href="{% url 'news:news_detail' news_id=new.id %}" target="_blank" style="color: #000000;">{{ new.title }}</a></h4>
+                                            <p>{{ new.desc }}</p>
+                                            <div class="other">
+    {#    ======================================数据库表的联级查询 =========================#}
+                                                <span class="hot">{{ new.tag.tag_name }}</span>
+                                                <span class="time">{{ new.add_time|date_format }}</span>
+                                                <span class="author">{{ new.author.username }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                {% endfor %}
                             {% endfor %}
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <a href="javascript:void(0)" class="load_multi">加载更多</a>
+                <a href="javascript:void(0)" class="load_multi" data-page="2">加载更多</a>
             </div>
             <div class="con-right">
                 <div class="offline-class">
@@ -168,5 +172,6 @@
 {% endblock %}
 {% block script_link %}
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="/static/js/base/common.js"></script>
     <script src="/static/js/index.js"></script>
 {% endblock %}

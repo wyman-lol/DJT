@@ -29,3 +29,12 @@ class NewsComment(models.Model):
 
     class Meta:
         ordering = ('-id',)
+
+
+class NewsHot(models.Model):
+    # 和新闻表是一对一关系
+    news = models.OneToOneField('News', on_delete=models.CASCADE)
+    # 优先级
+    priority = models.IntegerField()
+    is_delete = models.BooleanField(default=False)
+    create_time = models.DateTimeField(auto_now_add=True)

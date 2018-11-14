@@ -152,3 +152,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 七牛aksk
 QINIU_AK='4x46lmb6csoBE6wBFku8SOLcO3alz97l3LXqhp1e'
 QINIU_SK='lmFNNV9NuzuZtbnSGGL7lV8xj4ya2wmW7GmkUktv'
+
+# 新闻分页数量 每页的数量
+ONE_PAGE_COUNT = 2
