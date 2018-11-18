@@ -4,6 +4,10 @@
     热门新闻管理页面
 {% endblock %}
 
+{% block style_link %}
+    <link rel="stylesheet" href="/static/css/admin_staff/base/sweetalert.css">
+{% endblock %}
+
 {% block hedaer %}
     热门新闻管理页面
 {% endblock %}
@@ -39,4 +43,7 @@
 
 {% block script_link %}
     <script src="/static/js/news/news_hot.js"></script>
+    <script src="/static/js/base/common.js"></script>
+    <script src="/static/js/admin_staff/sweetalert.min.js"></script>
+    <script src="/static/js/admin_staff/fsweetalert.js"></script>
 {% endblock %}

@@ -11,8 +11,8 @@ from .forms import NewsPubForm, AddNewsCommentForm
 from ..admin_staff.models import NewsTag
 from .models import News
 from qiniu import Auth
-from .models import NewsComment
-from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers
+from .models import NewsComment, NewsHot
+from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers, NewsHotSerializer
 from utils.Mydecorators import ajax_login_reruired
 
 # 发布新闻页面
@@ -133,8 +133,7 @@ def news_tag_list(request):
     news_tags = NewsTag.objects.filter(is_delete=False).all()
     serizlizer = NesTagSerializers(news_tags, many=True)
     return json_status.result(data={'tags': serizlizer.data})
-
-
+# 返回新闻和标签
 def news_with_tag(request):
     tag_id = int(request.GET.get('tag_id', 0))
     if tag_id:
@@ -143,3 +142,9 @@ def news_with_tag(request):
         newses = News.objects.filter(is_delete=False)
     serizlizer = NewsSerializers(newses, many=True)
     return json_status.result(data={'newses': serizlizer.data})
+
+# 返回热门新闻列表
+def hot_news_list(request):
+    hot_news = NewsHot.objects.filter(is_delete=False)
+    serializers = NewsHotSerializer(hot_news, many=True)
+    return json_status.result(data=serializers.data)

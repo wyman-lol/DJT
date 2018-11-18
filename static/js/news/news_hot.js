@@ -14,7 +14,7 @@ $(function () {
             <td>
               <a href="javascript:void(0);" data-news-id="${hot_news.news.id}">${hot_news.news.title}</a>
             </td>
-            <td>${hot_news.news.tag.name}</td>
+            <td>${hot_news.news.tag.tag_name}</td>
             <td>${hot_news.priority}</td>
             <td>
               <a href="javascript:void(0);" class="btn btn-xs btn-warning btn-edit"
@@ -64,7 +64,7 @@ $(function () {
                         return false;
                     }
                     // 发起 ajax 请求 前端向后台发送 priority(优先级) 和 hot_news_id 热门新闻 id
-                    selfAjax('/admin/news/hot/', 'put', {"priority": inputValue, "hot_news_id": hotNewsId}, res => {
+                    selfAjax('/admin/news-hot/', 'put', {"priority": inputValue, "hot_news_id": hotNewsId}, res => {
                         if (res["code"] === 1) {
                             // 弹出成功提示框
                             swal({
@@ -106,7 +106,7 @@ $(function () {
                     animation: 'slide-from-top',
                 }, () => {
                     // 发起ajax请求 携带 hot_news_id 热门新闻id
-                    selfAjax('/admin/news/hot/', 'delete', {"hot_news_id": hotNewsId}, res => {
+                    selfAjax('/admin/news-hot/', 'delete', {"hot_news_id": hotNewsId}, res => {
                         if (res["code"] === 1) {
                             swal({
                                 title: "删除",
@@ -129,4 +129,20 @@ $(function () {
             })
         })
     })();
-});¬
+});
+
+/*== 封装 JQ 的 Ajax ==*/
+function selfAjax(url, method, data, successCallback) {
+    $.ajax({
+        url,
+        method,
+        data,
+        dataType: "json",
+        success: successCallback || function (res) {
+            console.log(res);
+        },
+        error: err => {
+            logError(err);
+        }
+    });
+}

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import news_detail, up_token, AddNewsCommentView, comment_new, news_list, news_tag_list, news_with_tag
+from .views import news_detail, up_token, AddNewsCommentView, comment_new, news_list, news_tag_list, news_with_tag, hot_news_list
 
 app_name = 'news'
 urlpatterns = [
@@ -10,5 +10,6 @@ urlpatterns = [
     path('list/', news_list, name='news_list'),
     path('tag/list/', news_tag_list, name='news_tag_list'),
     path('news-with-tag/', news_with_tag, name='news_with_tag'),
+    path('hot/list/', hot_news_list, name='hot_news_list'),
 ]
 

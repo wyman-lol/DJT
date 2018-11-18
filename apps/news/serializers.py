@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from .models import NewsComment, News
+from .models import NewsComment, News, NewsHot
 from ..admin_staff.models import NewsTag
 from ..account.serializers import UserSerializers
+
 
 # 序列化模型
 class NewsCommentSerializers(serializers.ModelSerializer):
@@ -25,6 +26,16 @@ class NesTagSerializers(serializers.ModelSerializer):
 class NewsSerializers(serializers.ModelSerializer):
     author = UserSerializers()
     tag = NesTagSerializers()
+
     class Meta:
         model = News
         fields = ('id', 'title', 'desc', 'photo_url', 'add_time', 'author', 'tag')
+
+
+class NewsHotSerializer(serializers.ModelSerializer):
+    news = NewsSerializers()
+
+    class Meta:
+        model = NewsHot
+        # fields的字段必须要有而且一致
+        fields = ('id', 'priority', 'is_delete', 'news')

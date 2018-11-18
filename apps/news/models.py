@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 # 新闻模型表
 class News(models.Model):
@@ -13,10 +14,12 @@ class News(models.Model):
     # on_delete级连删除
     tag = models.ForeignKey('admin_staff.NewsTag', on_delete=models.CASCADE)
     author = models.ForeignKey('account.User', on_delete=models.CASCADE)
+
     # 设置按-id排序，filter查询出来的结果就是倒序的
     # 或者在filter后面加order_by（'-id'）
     class Meta:
         ordering = ('-id',)
+
 
 # 新闻评论模型表
 class NewsComment(models.Model):
@@ -38,3 +41,6 @@ class NewsHot(models.Model):
     priority = models.IntegerField()
     is_delete = models.BooleanField(default=False)
     create_time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-priority',)
