@@ -24,30 +24,18 @@
                 <li class="con show">
                     <div class="course-list">
                         <ul>
-                            <li>
-                                <img src="https://res.shiguangkey.com/file/201804/11/20180411175754047081695.jpg!mall_course_b">
+                            {% for course in courses %}
+                                <li>
+                                <a href="{% url 'course:course_detail' course_id=course.id %}">
+                                <img src="{{ course.cover_url }}">
+                                </a>
                                 <div class="course">
-                                    <h3>C语言</h3>
-                                    <p class="message">从基础到项目实战从基础到项目实战从基础到项目实战从基础到项目实战从基础到项目实战</p>
+                                    <h3>{{ course.title }}</h3>
+                                    <p class="message">{{ course.profile }}</p>
                                     <span class="price">免费</span>
                                 </div>
                             </li>
-                            <li>
-                                <img src="https://res.shiguangkey.com//file/201805/05/20180505110937817137153.jpg!mall_course_c">
-                                <div class="course">
-                                    <h3>1801级中级班(JSJQ)</h3>
-                                    <p class="message">从基础到项目实战从基础到项目实战从基础到项目实战从基础到项目实战从基础到项目实战</p>
-                                    <span class="price">3980元</span>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="https://res.shiguangkey.com//file/201804/08/20180408230910347931149.png!mall_course_c">
-                                <div class="course">
-                                    <h3>UI设计</h3>
-                                    <p class="message">UI设计零基础到大型项目实战到大型项目实战到大型项目实战</p>
-                                    <span class="price">免费</span>
-                                </div>
-                            </li>
+                            {% endfor %}
                             <li>
                                 <img src="https://res.shiguangkey.com/file/201803/22/20180322091230008492307.png!mall_course_b">
                                 <div class="course">

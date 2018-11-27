@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import NewsComment, News, NewsHot
+from .models import NewsComment, News, NewsHot, NewsBanner
 from ..admin_staff.models import NewsTag
 from ..account.serializers import UserSerializers
 
@@ -39,3 +39,8 @@ class NewsHotSerializer(serializers.ModelSerializer):
         model = NewsHot
         # fields的字段必须要有而且一致
         fields = ('id', 'priority', 'is_delete', 'news')
+
+class NewsBannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NewsBanner
+        fields = '__all__'

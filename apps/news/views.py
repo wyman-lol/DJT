@@ -1,18 +1,19 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, QueryDict
 from django.shortcuts import render, Http404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
+from django.views.decorators.http import require_GET
 from utils import json_status
 import os
 from DJT import settings
-from .forms import NewsPubForm, AddNewsCommentForm
+from .forms import NewsPubForm, AddNewsCommentForm, NewsBannerForm
 from ..admin_staff.models import NewsTag
 from .models import News
 from qiniu import Auth
-from .models import NewsComment, NewsHot
-from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers, NewsHotSerializer
+from .models import NewsComment, NewsHot, NewsBanner
+from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers, NewsHotSerializer, NewsBannerSerializer
 from utils.Mydecorators import ajax_login_reruired
 
 # 发布新闻页面
@@ -148,3 +149,52 @@ def hot_news_list(request):
     hot_news = NewsHot.objects.filter(is_delete=False)
     serializers = NewsHotSerializer(hot_news, many=True)
     return json_status.result(data=serializers.data)
+
+# 轮播图的增删改
+@method_decorator([csrf_exempt,], name='dispatch')
+class NewsBannerView(View):
+    def get(self, request):
+        return render(request, 'admin_staff/news/news_banner.html')
+
+    def post(self, request):
+        form = NewsBannerForm(request.POST)
+        if form.is_valid():
+            link_to = form.cleaned_data.get("link_to")
+            image_url = form.cleaned_data.get('image_url')
+            priority = form.cleaned_data.get('priority')
+            print('link_to:{},image_url:{},priority:{} '.format(link_to, image_url, priority))
+            banner = NewsBanner.objects.create(image_url=image_url, priority=priority, link_to=link_to)
+            return json_status.result(data={"banner_id": banner.id})
+        return json_status.params_error(message=form.get_error())
+
+    def put(self, request):
+        p = QueryDict(request.body)
+        banner_id = p.get("banner_id")
+        image_url = p.get("image_url")
+        priority = p.get("priority")
+        link_to = p.get("link_to")
+        if banner_id:
+            banner = NewsBanner.objects.filter(id=banner_id)
+            if banner:
+                banner.update(image_url=image_url, priority=priority, link_to=link_to)
+                return json_status.result()
+            return json_status.result().params_error(message='轮播图找不到')
+        return json_status.result().params_error(message="bannerId不存在")
+
+    def delete(self, request):
+        d = QueryDict(request.body)
+        banner_id = d.get("banner_id")
+        if banner_id:
+            banner = NewsBanner.objects.filter(id=banner_id)
+            if banner:
+                banner.update(is_delete=True)
+                return json_status.result()
+            return json_status.params_error(message="轮播图不存在")
+        return json_status.params_error(message="轮播图id不存在")
+
+@require_GET   #  /news/banner/list/
+def news_banner_list(request):
+    """返回banner的列表 """
+    banners = NewsBanner.objects.filter(is_delete=False)
+    serializer = NewsBannerSerializer(banners, many=True)
+    return json_status.result(data={"banners": serializer.data})

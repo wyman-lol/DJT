@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 from DJT import settings
 from urllib.parse import urlencode
 from django.utils.timezone import make_aware
-from ..news.forms import NewsHotAddForm
+from ..news.forms import NewsHotAddForm, NewsEditForm
 from ..news.models import NewsHot
 # Create your views here.
 def staff(request):
@@ -66,14 +66,15 @@ class NewsTagView(View):
             return json_status.params_error('标签已删除或不存在')
 
 # 新闻管理
+@method_decorator(csrf_exempt, name='dispatch')
 class NewsMasterView(View):
     def get(self, request):
-        newses = News.objects.defer('content').select_related('tag', 'author')
+        newses = News.objects.defer('content').select_related('tag', 'author').filter(is_delete=False)
         p = int(request.GET.get('p', 1))
-        start_time = request.GET.get('start_time')
-        end_time = request.GET.get('end_time')
-        title = request.GET.get('title')
-        author = request.GET.get('author')
+        start_time = request.GET.get('start_time', '')
+        end_time = request.GET.get('end_time', '')
+        title = request.GET.get('title', '')
+        author = request.GET.get('author', '')
         tag_id = request.GET.get('tag_id', 0)
         # 后台返回新闻标题到前端，避免每次点击查询时候标签栏都会清空
 
@@ -104,10 +105,6 @@ class NewsMasterView(View):
                    'author': author,
                    'tag_id': int(tag_id),
                    'url_param': urlencode({             #urlecode把参数转化为key=value的形式
-                       'newses': pages.object_list,
-                       'news_tag': news_tag,
-                       'page': pages,
-                       'paginator': one_page_news,
                        'start_time': start_time,
                        'end_time': end_time,
                        'title': title,
@@ -155,6 +152,23 @@ class NewsMasterView(View):
                 'right_has_more': right_has_more,
                 'right_page': right_page
                 }
+    # 删除新闻
+    def delete(self, request):
+        from django.http import QueryDict
+        res = QueryDict(request.body)
+        news_id = res.get('news_id')
+        if news_id:
+            news = News.objects.filter(id=news_id).first()
+            if news:
+                hot_news = NewsHot.objects.filter(news=news)
+                if hot_news:
+                    hot_news.update(is_delete=True)
+                news.is_delete = True
+                news.save()
+                return json_status.result()
+            return json_status.params_error(message="新闻不存在")
+        return json_status.params_error(message="参数错误")
+
 # 热门新闻管理，编辑和删除
 @method_decorator(csrf_exempt, name='dispatch')
 class NewsHotView(View):
@@ -207,3 +221,35 @@ class NewsHotAddView(View):
             return json_status.params_error(message='新闻不存在')
         else:
             return json_status.params_error(message=form.get_error())
+
+@method_decorator(csrf_exempt, name='dispatch')
+class NewsEditView(View):
+    def get(self, request):
+        news_id = request.GET.get('news_id')
+        if news_id:
+            news = News.objects.filter(id=news_id).first()
+            if news:
+                tags = NewsTag.objects.filter(is_delete=False).all()
+                return render(request, 'news/newspub.html', context={'news': news, 'tags': tags})
+            return json_status.params_error(message='新闻不存在或者已删除')
+        return json_status.params_error(message='新闻id不正确')
+
+    def post(self, request):
+        form = NewsEditForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get('title')
+            desc = form.cleaned_data.get('desc')
+            tag_id = form.cleaned_data.get('tag_id')
+            photo_url = form.cleaned_data.get('photo_url')
+            content = form.cleaned_data.get('content')
+            news_id = form.cleaned_data.get('news_id')
+            news = News.objects.filter(id=news_id, is_delete=False)
+            tag = NewsTag.objects.filter(id=tag_id, is_delete=False).first()
+            if news and tag:
+                news.update(title=title, desc=desc, tag=tag, photo_url=photo_url, content=content, author=request.user)
+                return json_status.result()
+            else:
+                return json_status.params_error(message='新闻不存在')
+        else:
+            return json_status.params_error(message=form.get_error())
+        return render(request, 'news/newspub.html')

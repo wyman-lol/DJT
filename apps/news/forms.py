@@ -22,3 +22,13 @@ class AddNewsCommentForm(forms.Form, FormMixin):
 class NewsHotAddForm(forms.Form, FormMixin):
     news_id = forms.IntegerField(error_messages={'required': '参数错误'})
     priority = forms.IntegerField(error_messages={'required': '优先级不能为空'})
+
+
+class NewsEditForm(NewsPubForm):
+    news_id = forms.IntegerField(error_messages={'required': '新闻ID错误'})
+
+
+class NewsBannerForm(forms.Form, FormMixin):
+    image_url = forms.URLField(error_messages={'required': '图片地址不能为空', 'invalid': '请输入合法网址'})
+    priority = forms.IntegerField(error_messages={'required': '优先级不能为空'})
+    link_to = forms.URLField(error_messages={'required': '跳转地址不能为空', 'invalid': '请输入合法网址'})

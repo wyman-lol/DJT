@@ -44,3 +44,14 @@ class NewsHot(models.Model):
 
     class Meta:
         ordering = ('-priority',)
+
+
+class NewsBanner(models.Model):
+    image_url = models.URLField()
+    priority = models.IntegerField()
+    link_to = models.URLField()
+    create_date = models.DateTimeField(auto_now_add=True)
+    is_delete = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['-priority']

@@ -1,9 +1,9 @@
 $(function () {
 
     // 生成富文本编辑器  https://www.kancloud.cn/wangfupeng/wangeditor3/332599
-    let E = window.wangEditor;
-    let editor = new E('#news-content');
-    editor.create();
+    // var E = window.wangEditor;
+    // var editor = new E('#news-content');
+    // editor.create();
 
 // ================== 上传至服务器 ================
 //     获取图片输入标签元素
@@ -85,8 +85,8 @@ $(function () {
         let descVal = $("#news-desc").val();
         let tagId = $("#news-category").val();
         let thumbnailVal = $thumbnailUrl.val();
-        let contentHtml = editor.txt.html();
-        let contentText = editor.txt.text();
+        var contentHtml = window.editor.txt.html();
+        var contentText = window.editor.txt.text();
         if (tagId === '0') {
             ALERT.alertInfoToast('请选择新闻标签')
         }
@@ -99,21 +99,28 @@ $(function () {
         //   新闻内容纯文字版：${contentText}
         // `);
 
-        $.ajax({
-            url: "/admin/newspub/",
-            method: "post",
-            data: {
+        // 更新或者是发布新闻不同的url
+        let newsid = $(this).data('news-id');
+        let url = newsid ? '/admin/newsedit/' : '/admin/newspub/';
+        let data = {
                 "title": titleVal,
                 "desc": descVal,
                 "tag_id": tagId,
                 "photo_url": thumbnailVal,
                 "content": contentHtml,
-            },
+            };
+        if(newsid){
+            data['news_id'] = newsid
+        }
+        $.ajax({
+            url: url,
+            method: "post",
+            data: data,
             dataType: "json",
             success: res => {
                 if (res["code"] === 1) {
-                    ALERT.alertNewsSuccessCallback("新闻发表成功", '跳到首页', () => {
-                        window.location.href = '/course/index/';
+                    ALERT.alertNewsSuccessCallback("新闻发表成功", '跳转到新闻管理', () => {
+                        window.location.href = '/admin/news-master/';
                     });
                 } else {
                     ALERT.alertErrorToast(res["msg"]);

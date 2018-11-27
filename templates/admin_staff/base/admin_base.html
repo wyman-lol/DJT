@@ -57,7 +57,7 @@ desired effect
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="http://127.0.0.1:8000/course/index/" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>P</b>y</span>
       <!-- logo for regular state and mobile devices -->
@@ -134,7 +134,9 @@ desired effect
         <li class="active"><a href="{% url 'admin_staff:newsmaster' %}"><i class="fa fa-plus"></i> <span>新闻管理</span></a></li>
         <li class="active"><a href="{% url 'admin_staff:news_hot' %}"><i class="fa fa-file"></i> <span>热门新闻管理</span></a></li>
         <li class="active"><a href="{% url 'admin_staff:news_hot_add' %}"><i class="fa fa-cloud-upload"></i> <span>热门新闻发布</span></a></li>
-
+        <li class="active"><a href="{% url 'admin_staff:news_banner' %}"><i class="fa fa-image"></i> <span>轮播图管理</span></a></li>
+        <li class="header">课程</li>
+        <li class="active"><a href="{% url 'admin_staff:course-pub' %}"><i class="fa fa-video-camera"></i> <span>课程发布</span></a></li>
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

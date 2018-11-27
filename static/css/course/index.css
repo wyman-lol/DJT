@@ -9,7 +9,7 @@
     height: 200px;
     width: 800px;
     position: relative;
-    margin: 20px auto;
+    margin-top: 20px;
 }
 .middle .mid-con .con-left .banner .photo img{
     height: 200px;
@@ -49,7 +49,7 @@
     position: absolute;
     bottom: 0;
     left: 50%;
-    margin-left: -54px;
+    margin-left: -81px;
 }
 .middle .mid-con .con-left .banner .select .activate{
     background: white;
@@ -64,6 +64,7 @@
     height: 200px;
     background: white;
     border-bottom: 1px solid dimgrey;
+    padding-top: 20px;
 }
 .news .news-list{
     padding-bottom: 20px;
