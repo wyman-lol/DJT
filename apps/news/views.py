@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import JsonResponse, QueryDict
 from django.shortcuts import render, Http404
 from django.contrib.admin.views.decorators import staff_member_required
@@ -13,8 +14,10 @@ from ..admin_staff.models import NewsTag
 from .models import News
 from qiniu import Auth
 from .models import NewsComment, NewsHot, NewsBanner
-from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers, NewsHotSerializer, NewsBannerSerializer
+from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers, NewsHotSerializer, \
+    NewsBannerSerializer
 from utils.Mydecorators import ajax_login_reruired
+
 
 # 发布新闻页面
 @method_decorator([csrf_exempt, staff_member_required(login_url='/account/loading/')], name='dispatch')
@@ -39,6 +42,7 @@ class NewsPUbView(View):
         else:
             return json_status.params_error(message=form.get_error())
 
+
 # 上传文件
 @csrf_exempt
 def UploadFile(request):
@@ -55,9 +59,9 @@ def UploadFile(request):
     file_url = request.build_absolute_uri(settings.MEDIA_URL + file_name)
     return json_status.result(data={'file_url': file_url})
 
+
 # 上传图片到七牛
 def up_token(request):
-
     # 需要填写你的 Access Key 和 Secret Key
     access_key = settings.QINIU_AK
     secret_key = settings.QINIU_SK
@@ -91,7 +95,7 @@ class AddNewsCommentView(View):
         if form.is_valid():
             news_id = form.cleaned_data.get('news_id')
             content = form.cleaned_data.get('content')
-            news = News.objects.filter(id=news_id,).first()
+            news = News.objects.filter(id=news_id, ).first()
             if news:
                 comment = NewsComment.objects.create(content=content, author=request.user, news=news)
                 serializers = NewsCommentSerializers(comment)
@@ -100,6 +104,7 @@ class AddNewsCommentView(View):
                 return json_status.params_error('新闻不存在或已删除')
         else:
             return json_status.params_error(message='评论失败')
+
 
 # 新闻评论列表
 def comment_new(request):
@@ -121,19 +126,23 @@ def comment_new(request):
 def news_list(request):
     tag_id = request.GET.get('tag_id')
     page = int(request.GET.get('page', 1))
-    start_page = settings.ONE_PAGE_COUNT*(page - 1)
+    start_page = settings.ONE_PAGE_COUNT * (page - 1)
     end_page = start_page + settings.ONE_PAGE_COUNT
-    newses = News.objects.defer('content').select_related('tag', 'author').filter(is_delete=0, tag_id =tag_id).all()[start_page: end_page]
+    newses = News.objects.defer('content').select_related('tag', 'author').filter(is_delete=0, tag_id=tag_id).all()[
+             start_page: end_page]
     if tag_id:
         return json_status.result(data={'newses': NewsSerializers(newses, many=True).data})
     else:
         return json_status.params_error(message='新闻不存在')
+
 
 # 返回api接口  /news/tag/list/
 def news_tag_list(request):
     news_tags = NewsTag.objects.filter(is_delete=False).all()
     serizlizer = NesTagSerializers(news_tags, many=True)
     return json_status.result(data={'tags': serizlizer.data})
+
+
 # 返回新闻和标签
 def news_with_tag(request):
     tag_id = int(request.GET.get('tag_id', 0))
@@ -144,14 +153,16 @@ def news_with_tag(request):
     serizlizer = NewsSerializers(newses, many=True)
     return json_status.result(data={'newses': serizlizer.data})
 
+
 # 返回热门新闻列表
 def hot_news_list(request):
     hot_news = NewsHot.objects.filter(is_delete=False)
     serializers = NewsHotSerializer(hot_news, many=True)
     return json_status.result(data=serializers.data)
 
+
 # 轮播图的增删改
-@method_decorator([csrf_exempt,], name='dispatch')
+@method_decorator([csrf_exempt, ], name='dispatch')
 class NewsBannerView(View):
     def get(self, request):
         return render(request, 'admin_staff/news/news_banner.html')
@@ -192,9 +203,24 @@ class NewsBannerView(View):
             return json_status.params_error(message="轮播图不存在")
         return json_status.params_error(message="轮播图id不存在")
 
-@require_GET   #  /news/banner/list/
+
+@require_GET  # /news/banner/list/
 def news_banner_list(request):
     """返回banner的列表 """
     banners = NewsBanner.objects.filter(is_delete=False)
     serializer = NewsBannerSerializer(banners, many=True)
     return json_status.result(data={"banners": serializer.data})
+
+# 搜索视图
+def searchView(request):
+    q = request.GET.get('q', '')
+    if q:
+        ret_newses = News.objects.filter(
+            Q(title__contains=q) | Q(content__icontains=q) | Q(author__username__icontains=q))
+        context = {'ret_newses': ret_newses,
+                   'q': q}
+    else:
+        hot_newses = NewsHot.objects.filter(is_delete=False).all()
+        context = {'hot_newses': hot_newses}
+
+    return render(request, 'news/search.html', context=context)

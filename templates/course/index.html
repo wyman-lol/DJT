@@ -14,7 +14,7 @@
                 <div class="banner">
                     <ul class="photo">
                         {% for photo in banners %}
-                            <li><img src="{{ photo.image_url }}"></li>
+                            <li><a href="{{ photo.link_to }}"><img src="{{ photo.image_url }}"></a></li>
                         {% endfor %}
                     </ul>
                     <ul class="btn">

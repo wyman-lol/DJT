@@ -20,22 +20,16 @@
                         </div>
                         <div class="doc-contain">
                             <ul class="doc-list">
+                            {% for doc in docs %}
                                 <li class="doc-item">
                                     <div class="doc-img doc"></div>
                                     <div class="d-contain">
-                                        <p class="doc-title">标题</p>
-                                        <p class="doc-desc">内容内容内容内容内容内容</p>
-                                        <a href="javascript:void(0);" class="doc-price">下载</a>
+                                        <p class="doc-title">{{ doc.title }}</p>
+                                        <p class="doc-desc">{{ doc.desc }}</p>
+                                        <a href="{% url 'doc:doc_download' %}?doc_id={{ doc.id }}" class="doc-price">下载</a>
                                     </div>
                                 </li>
-                                <li class="doc-item">
-                                    <div class="doc-img doc"></div>
-                                    <div class="d-contain">
-                                        <p class="doc-title">标题</p>
-                                        <p class="doc-desc">内容内容内容内容内容内容</p>
-                                        <a href="javascript:void(0);" class="doc-price">下载</a>
-                                    </div>
-                                </li>
+                            {% endfor %}
 
                             </ul>
                         </div>

@@ -51,7 +51,7 @@ $(function () {
                 let courseId = res["data"]["course_id"];
                 ALERT.alertNewsSuccessCallback("课程发布成功", "查看课程详情", () => {
                     // 查看新闻
-                    window.location.href = `/course/detail/${courseId}`;
+                    window.location.href = `/course/course-detail/${courseId}`;
                 })
             }
             else{

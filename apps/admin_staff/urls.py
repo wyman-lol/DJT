@@ -2,6 +2,7 @@ from django.urls import path
 from .views import *
 from .course_view import *
 from ..news.views import *
+from .doc_view import *
 
 app_name = 'admin_staff'
 urlpatterns = [
@@ -19,4 +20,9 @@ urlpatterns = [
 # 课堂相关的url
 urlpatterns += [
     path('course-pub/', CoursePubView.as_view(), name='course-pub'),
+]
+
+# 文档的url
+urlpatterns += [
+    path('doc_upload/', DocUploadView.as_view(), name='doc_upload'),
 ]
