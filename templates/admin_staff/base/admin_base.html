@@ -139,6 +139,10 @@ desired effect
         <li class="active"><a href="{% url 'admin_staff:course-pub' %}"><i class="fa fa-video-camera"></i> <span>课程发布</span></a></li>
         <li class="header">文档</li>
         <li class="active"><a href="{% url 'admin_staff:doc_upload' %}"><i class="fa fa-upload"></i> <span>文档管理</span></a></li>
+          {% if user.is_superuser %}
+        <li class="header">员工</li>
+        <li class="active"><a href="{% url 'admin_staff:staff_about' %}"><i class="fa fa-upload"></i> <span>员工档管理</span></a></li>
+          {% endif %}
       <!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

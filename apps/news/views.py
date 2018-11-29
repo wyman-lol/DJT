@@ -17,6 +17,7 @@ from .models import NewsComment, NewsHot, NewsBanner
 from .serializers import NewsCommentSerializers, NewsSerializers, NesTagSerializers, NewsHotSerializer, \
     NewsBannerSerializer
 from utils.Mydecorators import ajax_login_reruired
+from utils.Mydecorators import user_permission_required
 
 
 # 发布新闻页面
@@ -45,6 +46,7 @@ class NewsPUbView(View):
 
 # 上传文件
 @csrf_exempt
+@user_permission_required(NewsBanner)
 def UploadFile(request):
     file = request.FILES.get('upload_file')
     file_name = file.name
@@ -61,6 +63,7 @@ def UploadFile(request):
 
 
 # 上传图片到七牛
+
 def up_token(request):
     # 需要填写你的 Access Key 和 Secret Key
     access_key = settings.QINIU_AK

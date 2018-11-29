@@ -31,6 +31,9 @@ $(function () {
                     let thumbnailUrl = res["data"]["file_url"];
                     $thumbnailUrl.val('');
                     $thumbnailUrl.val(thumbnailUrl);
+                }else{
+                    let msg = res['msg'];
+                    ALERT.alertInfoToast(msg);
                 }
             },
             error: err => {

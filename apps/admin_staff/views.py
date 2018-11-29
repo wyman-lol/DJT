@@ -5,6 +5,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from utils import json_status
+from utils.Mydecorators import user_permission_required
 from .models import NewsTag
 from ..news.models import News
 from django.core.paginator import Paginator
@@ -14,6 +15,8 @@ from urllib.parse import urlencode
 from django.utils.timezone import make_aware
 from ..news.forms import NewsHotAddForm, NewsEditForm
 from ..news.models import NewsHot
+
+
 # Create your views here.
 def staff(request):
     return render(request, 'admin_staff/index/index.html')
@@ -25,6 +28,7 @@ class NewsTagView(View):
     def get(self, request):
         news_tag = NewsTag.objects.filter(is_delete=False).all()
         return render(request, 'admin_staff/news/news_manage.html', context={'news_tag': news_tag, })
+
     # 新增标签
     def post(self, request):
         name = request.POST.get('name')
@@ -38,6 +42,7 @@ class NewsTagView(View):
                 return json_status.ok()
         else:
             return json_status.params_error('标签已存在')
+
     # 修改、编辑标签
     def put(self, request):
         # request的内容都在body里面，把body转换为query字典
@@ -54,6 +59,7 @@ class NewsTagView(View):
                 return json_status.result()
         else:
             return json_status.params_error('请输入正确标签')
+
     # 删除标签
     def delete(self, request):
         result = QueryDict(request.body)
@@ -65,8 +71,9 @@ class NewsTagView(View):
         else:
             return json_status.params_error('标签已删除或不存在')
 
+
 # 新闻管理
-@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator([csrf_exempt, ], name='dispatch')
 class NewsMasterView(View):
     def get(self, request):
         newses = News.objects.defer('content').select_related('tag', 'author').filter(is_delete=False)
@@ -104,7 +111,7 @@ class NewsMasterView(View):
                    'title': title,
                    'author': author,
                    'tag_id': int(tag_id),
-                   'url_param': urlencode({             #urlecode把参数转化为key=value的形式
+                   'url_param': urlencode({  # urlecode把参数转化为key=value的形式
                        'start_time': start_time,
                        'end_time': end_time,
                        'title': title,
@@ -140,7 +147,7 @@ class NewsMasterView(View):
         right_start_index = current_page + 1
         right_end_index = current_page + around_count + 1
         if current_page >= total_page - around_count - 1:
-            right_page = range(right_start_index, total_page+1)
+            right_page = range(right_start_index, total_page + 1)
         else:
             right_has_more = True
             right_page = range(right_start_index, right_end_index)
@@ -152,6 +159,7 @@ class NewsMasterView(View):
                 'right_has_more': right_has_more,
                 'right_page': right_page
                 }
+
     # 删除新闻
     def delete(self, request):
         from django.http import QueryDict
@@ -169,11 +177,13 @@ class NewsMasterView(View):
             return json_status.params_error(message="新闻不存在")
         return json_status.params_error(message="参数错误")
 
+
 # 热门新闻管理，编辑和删除
 @method_decorator(csrf_exempt, name='dispatch')
 class NewsHotView(View):
     def get(self, request):
         return render(request, 'news/news_hot.html')
+
     def put(self, request):
         ret = QueryDict(request.body)
         priority = int(ret.get('priority', 0))
@@ -186,6 +196,7 @@ class NewsHotView(View):
             else:
                 return json_status.params_error(message='热门新闻不存在')
         return json_status.params_error(message='热门新闻不存在')
+
     def delete(self, request):
         ret = QueryDict(request.body)
         # print(ret) < QueryDict: {'hot_news_id': ['1']} >
@@ -199,6 +210,7 @@ class NewsHotView(View):
                 return json_status.params_error(message='热门新闻不存在')
         else:
             return json_status.params_error(message='热门新闻不存在')
+
 
 # 热门新闻添加
 @method_decorator(csrf_exempt, name='dispatch')
@@ -222,6 +234,8 @@ class NewsHotAddView(View):
         else:
             return json_status.params_error(message=form.get_error())
 
+
+# 新闻编辑
 @method_decorator(csrf_exempt, name='dispatch')
 class NewsEditView(View):
     def get(self, request):

@@ -3,6 +3,7 @@ from .views import *
 from .course_view import *
 from ..news.views import *
 from .doc_view import *
+from .staff_view import *
 
 app_name = 'admin_staff'
 urlpatterns = [
@@ -25,4 +26,10 @@ urlpatterns += [
 # 文档的url
 urlpatterns += [
     path('doc_upload/', DocUploadView.as_view(), name='doc_upload'),
+]
+
+#权限的url
+urlpatterns += [
+    path('staff/about/', Staff.as_view(), name="staff_about"),
+    path('staff-add/', StaffAdd.as_view(), name="staff_add"),
 ]
